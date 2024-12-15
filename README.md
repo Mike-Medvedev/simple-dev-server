@@ -1,1 +1,2 @@
-Node js TCP server implementing HTTP protocol
+Node js TCP server implementing HTTP protocol to serve app to browser
+
