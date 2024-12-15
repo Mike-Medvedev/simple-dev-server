@@ -1,4 +1,9 @@
 import net from "net";
+import { readFile } from "fs";
+import path from "path";
+
+const publicFolder = path.join(process.cwd(), "src", "public");
+const filePath = path.join(publicFolder, "index.html");
 
 const server = net.createServer((socket) => {
   console.log("client connected");
@@ -20,12 +25,17 @@ const req = (data, socket) => {
 
   if (request.startsWith("GET")) {
     const headers = ["HTTP/1.1 200 OK", "Content-Type: text/html", ""];
-
-    const body = "<div>Yo</div>";
-    const response = `${headers.join("\r\n")}\r\n${body}`;
-
-    socket.write(response);
-    socket.end();
+    readFile(filePath, (err, data) => {
+      if (err) {
+        socket.write("HTTP/1.1 500 Internal Server Error\r\n\r\n");
+        socket.end();
+        return;
+      }
+      const body = data.toString();
+      const response = `${headers.join("\r\n")}\r\n${body}`;
+      socket.write(response);
+      socket.end();
+    });
   }
 };
 
