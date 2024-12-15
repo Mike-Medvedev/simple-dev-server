@@ -21,3 +21,9 @@ for (const [brand, model] of Object.entries(data)) {
     list.appendChild(li);
   });
 }
+
+let field;
+const input = document.getElementById("searchInput");
+input.addEventListener("input", (e) => {
+  field = e.target.value;
+});
