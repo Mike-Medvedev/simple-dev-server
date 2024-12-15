@@ -3,8 +3,8 @@ import {
   parseResource,
   parseFileExt,
   generateHeaders,
-} from "../scripts/parseHttpRequest.js";
-import { pathToRequest, readFileContents } from "../scripts/pathScripts.js";
+} from "./parseHttpRequest.js";
+import { pathToRequest, readFileContents } from "./pathScripts.js";
 import { FileNotFound } from "./errors.js";
 
 const req = async (data, socket) => {

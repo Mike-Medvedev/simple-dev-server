@@ -1,28 +1,23 @@
-const data = [
-  { brand: "Fender", model: "Stratocaster", desc: "A couple" },
-  { brand: "Gibson", model: "Les Paul", desc: "A couple" },
-  { brand: "Gibson", model: "SG", desc: "A couple" },
-  { brand: "Gibson", model: "Firebird", desc: "A couple" },
-  { brand: "Guild", model: "Starfire II", desc: "A couple" },
-  { brand: "Guild", model: "X-500", desc: "A couple" },
-];
+const data = {
+  Fender: ["Stratocaster"],
+  Gibson: ["Les Paul", "SG", "Firebird"],
+  Guild: ["Starfire II", "X-500"],
+};
 
 const aside = document.getElementById("layout-aside");
-const brands = {};
 
-for (const elmt of data) {
-  if (!brands[elmt.brand]) {
-    const sec = document.createElement("section");
-    sec.innerText = elmt.brand;
-
-    const ul = document.createElement("ul");
-    sec.appendChild(ul);
-
-    brands[elmt.brand] = ul;
-    aside.appendChild(sec);
-  }
-
-  const li = document.createElement("li");
-  li.innerText = elmt.model;
-  brands[elmt.brand].appendChild(li);
+for (const [brand, model] of Object.entries(data)) {
+  const sec = document.createElement("section");
+  aside.appendChild(sec);
+  console.log(sec);
+  sec.innerText = brand;
+  const list = document.createElement("div");
+  list.id = "guitarList";
+  sec.appendChild(list);
+  model.forEach((m) => {
+    const li = document.createElement("span");
+    li.id = "guitarItem";
+    li.innerText = m;
+    list.appendChild(li);
+  });
 }

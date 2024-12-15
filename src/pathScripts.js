@@ -1,7 +1,7 @@
 import { fileURLToPath } from "url";
 import path from "path";
 import { readFile } from "node:fs/promises";
-import { FileNotFound } from "../src/errors.js";
+import { FileNotFound } from "./errors.js";
 
 function pathToRequest(file) {
   const __filename = fileURLToPath(import.meta.url);
