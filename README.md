@@ -1,2 +1,1 @@
-Node js TCP server implementing HTTP protocol to serve app to browser
-
+raw Node webapp without build tools
