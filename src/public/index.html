@@ -5,14 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SimpleServer</title>
+    <link rel="icon" href="server.svg" />
     <link href="./index.css" rel="stylesheet">
     </link>
+    <script src="./index.js" type="module"></script>
 </head>
 
 <body>
-    <div style="display: flex;">
-        Hello world
+    <div style="display: flex; flex-direction: column; width: 100%; height: 100%;">
+        <header style="border-bottom: 1px solid #4b5563;">
+            <h3 style="display: flex; justify-content: center;">
+                Welcome The Rawest Frontend
+            </h3>
+        </header>
+        <section style="flex: 1; display: grid; grid-template-columns: 1fr 3fr; padding: 1rem;">
+            <aside id="layout-aside" style="margin-left: 2rem;">
+                <span>Quick search cmd k</span>
+                <script src="./components/data.js" type="module">
+                </script>
+            </aside>
+            <main style="overflow-y: scroll;">
+                <h1>Fender Stratocaster</h1>
+                <p>The Fender Stratocaster is the greatest guitar ever made, a quinessential instrument that shaped and
+                    defined decades for the last 100 years</p>
+            </main>
+
+        </section>
+
+        <footer style="padding: 1rem;">Contact</footer>
     </div>
+
 </body>
 
 </html>

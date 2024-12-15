@@ -9,7 +9,7 @@ import { FileNotFound } from "./errors.js";
 
 const req = async (data, socket) => {
   const request = data.toString();
-  console.log();
+  console.log(request);
 
   if (request.startsWith("GET")) {
     const fileRequested = parseResource(request);

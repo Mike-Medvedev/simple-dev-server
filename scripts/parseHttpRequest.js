@@ -27,6 +27,8 @@ function generateHeaders(fileExt, contentLength) {
     css: "text/css",
     js: "application/javascript",
     json: "application/json",
+    png: "image/png",
+    svg: "image/svg+xml",
     default: "text/plain",
   };
   const headers = [

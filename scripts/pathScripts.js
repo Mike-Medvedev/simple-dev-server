@@ -24,7 +24,7 @@ function pathToRequest(file) {
 async function readFileContents(filePath) {
   try {
     const contents = await readFile(filePath);
-    return contents.toString();
+    return contents;
   } catch (err) {
     console.log("Resource not found");
     throw new FileNotFound();
