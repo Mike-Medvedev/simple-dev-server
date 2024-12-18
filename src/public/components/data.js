@@ -1,13 +1,39 @@
-const data = {
-  Fender: ["Stratocaster"],
-  Gibson: ["Les Paul", "SG", "Firebird"],
-  Guild: ["Starfire II", "X-500"],
-};
+function generateRandomWord(alphabet) {
+  if (!alphabet) return;
+  let randomWord = "";
+  for (let i = 0; i <= 6; i++) {
+    const rand = Math.floor(Math.random() * 6);
+    randomWord += alphabet[rand];
+  }
+  return randomWord;
+}
+function generateBigList() {
+  let data = {};
+  const alphabet = ["a", "b", "c", "d", "e", "f", "g"];
+  for (let i = 0; i < 1000; i++) {
+    data[generateRandomWord(alphabet)] = ["Stratocaster"];
+  }
 
+  return data;
+}
+
+const state = {
+  listData: generateBigList(),
+};
 const container = document.getElementById("listContainer");
-function renderList(list = data) {
+
+const input = document.getElementById("searchInput");
+input.addEventListener("input", (e) => {
+  filterList(e.target.value);
+  // hideUnusedList(e.target.value);
+});
+
+renderList();
+
+function renderList(list = state.listData) {
   for (const [brand, model] of Object.entries(list)) {
     const sec = document.createElement("section");
+    sec.id = brand;
     container.appendChild(sec);
     sec.innerText = brand;
     const list = document.createElement("div");
@@ -22,17 +48,24 @@ function renderList(list = data) {
     });
   }
 }
-renderList();
-const input = document.getElementById("searchInput");
-input.addEventListener("input", (e) => {
-  filterList(e.target.value);
-});
 
 function filterList(searchString) {
   container.innerHTML = "";
-  const filteredData = Object.entries(data).filter(([brand, model], index) =>
-    brand.toLowerCase().includes(searchString.toLowerCase())
+  const filteredData = Object.entries(state.listData).filter(
+    ([brand, model], index) =>
+      brand.toLowerCase().includes(searchString.toLowerCase())
   );
   const updatedData = Object.fromEntries(filteredData);
   renderList(updatedData);
+}
+
+function hideUnusedList(searchString) {
+  Object.entries(state.listData).forEach(([brand, model]) => {
+    const sectionToHide = document.getElementById(brand);
+    if (brand.toLowerCase().includes(searchString.toLowerCase())) {
+      sectionToHide.style.display = "block";
+    } else {
+      sectionToHide.style.display = "none";
+    }
+  });
 }
